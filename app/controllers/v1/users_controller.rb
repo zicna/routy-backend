@@ -7,6 +7,7 @@ class V1::UsersController < ApplicationController
     end 
 
     def create 
+        # byebug
         @user = User.new(user_params)
 
         @user.save
@@ -27,7 +28,7 @@ class V1::UsersController < ApplicationController
 
     private 
 
-    def contact_params
-        params.require(:user).premit(:username, :email)
+    def user_params
+        params.require(:user).permit(:username, :email)
     end
 end
