@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  namespace :v1, path: "" do
+  namespace :v1, path: "", defaults: {format: :json} do
     resources :users
     resources :sessions, only: [:create, :destroy]
   end
