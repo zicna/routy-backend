@@ -7,11 +7,10 @@ class V1::UsersController < ApplicationController
     end 
 
     def create 
-        # byebug
         @user = User.new(user_params)
 
         @user.save
-        render json: @user, status: :created
+        render :create
     end
 
     def destroy
@@ -29,7 +28,6 @@ class V1::UsersController < ApplicationController
     private 
 
     def user_params
-        # byebug
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 end
