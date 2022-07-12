@@ -4,8 +4,8 @@ json.data do
             @user,
             :id,
             :email,
-            :username,
-            :confirmed_at
+            :username
         )
     end
+    json.jwt token
 end 

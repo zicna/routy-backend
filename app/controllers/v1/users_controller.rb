@@ -7,11 +7,16 @@ class V1::UsersController < ApplicationController
     end 
 
     def create 
-        # byebug
         @user = User.new(user_params)
 
-        @user.save
-        render :create, locals: {token: jwt}, status: :created
+        if @user.save
+            jwt = JWT.encode ({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}), Rails.application.secrets.secret_key_base, 'HS256'
+
+            render :create, locals: {token: jwt}, status: :created
+        else
+            head(:unauthorized)
+        end
+        # render :create, locals: {token: jwt}, status: :created
     end
 
     def destroy
