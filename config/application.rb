@@ -37,3 +37,5 @@ module RailsApiApp
     config.api_only = true
   end
 end
+
+

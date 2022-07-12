@@ -7,10 +7,11 @@ class V1::UsersController < ApplicationController
     end 
 
     def create 
+        # byebug
         @user = User.new(user_params)
 
         @user.save
-        render :create
+        render :create, locals: {token: jwt}, status: :created
     end
 
     def destroy
