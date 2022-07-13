@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-
+    # before_filter :authenticate_user!
     # ! before integrating with devise
     # def current_user
     #     @current_user ||=  User.where(id: decode_token).first
