@@ -22,3 +22,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## branching
+ ### main 
+ - is using JWT for creating token and all authentication 
+
+ ### integrating_devise
+ - is integrating devise gem for rails app authentiacation
