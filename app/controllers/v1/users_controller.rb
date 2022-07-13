@@ -1,5 +1,6 @@
 class V1::UsersController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, :except => [:create]  
+    # skip_before_filter :authenticate_user!
 
     def index
         @users = User.all
@@ -21,7 +22,7 @@ class V1::UsersController < ApplicationController
 
             render :create, locals: {token: jwt}, status: :created
         else
-            head(:unauthorized)
+            render json: { error: 'invalid_credentials' }, status: :unauthorized
         end
         # render :create, locals: {token: jwt}, status: :created
     end
