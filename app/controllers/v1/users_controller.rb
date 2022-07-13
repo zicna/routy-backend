@@ -6,6 +6,12 @@ class V1::UsersController < ApplicationController
         render json: @users, status: :ok 
     end 
 
+    def show
+        # byebug
+        current_user
+        render :show, locals:{token: 'jwt'}, status: :created
+    end
+
     def create 
         @user = User.new(user_params)
 
