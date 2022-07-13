@@ -7,7 +7,6 @@ class V1::UsersController < ApplicationController
     end 
 
     def show
-        # byebug
         current_user
         render :show, locals:{token: 'jwt'}, status: :created
     end
@@ -22,7 +21,6 @@ class V1::UsersController < ApplicationController
         else
             head(:unauthorized)
         end
-        # render :create, locals: {token: jwt}, status: :created
     end
 
     def destroy
