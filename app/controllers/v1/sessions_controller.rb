@@ -4,7 +4,7 @@ class V1::SessionsController < ApplicationController
         
         #! user&. same as user && user.valid_password?
         if @user&.valid_password?(params[:user][:password])
-            jwt = JWT.encode ({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}), Rails.application.secrets.secret_key_base, 'HS256'
+            jwt = WebToken.encode(@user)
             render :create, locals: {token: jwt}, status: :created
         else
             render json: { error: 'invalid_credentials' }, status: :unauthorized
@@ -13,5 +13,10 @@ class V1::SessionsController < ApplicationController
     end
 
     def destroy
+        if current_user
+            render json: {message: 'successful sign out'}, status: :ok
+        else
+            render json: { error: 'invalid_credentials' }, status: :unauthorized
+        end
     end
 end 

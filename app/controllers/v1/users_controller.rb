@@ -1,4 +1,5 @@
 class V1::UsersController < ApplicationController
+    before_action :authenticate_user!, :except => [:create]  
 
     def index
         @users = User.all
@@ -7,31 +8,31 @@ class V1::UsersController < ApplicationController
     end 
 
     def show
-        current_user
-        render :show, locals:{token: 'jwt'}, status: :created
+        @user = current_user
+        jwt = WebToken.encode(@user)
+        render :show, locals:{token: jwt}, status: :ok
     end
 
     def create 
         @user = User.new(user_params)
 
         if @user.save
-            jwt = JWT.encode ({user_id: @user.id, exp: (Time.now + 2.weeks).to_i}), Rails.application.secrets.secret_key_base, 'HS256'
-
+            jwt = WebToken.encode(@user)
             render :create, locals: {token: jwt}, status: :created
         else
-            head(:unauthorized)
+            render json: { error: 'invalid_credentials' }, status: :unauthorized
         end
     end
 
     def destroy
-        @user = User.where(id: params[:id]).first
+        @user = current_user
 
         if @user.destroy
             head(:ok)
         else
             head(:unprocessable_entity)
         end
-        # * head is rails way of jusr returning content in the header 
+        # * head is rails way of just returning content in the header 
         # * there is no content in the body of response
     end
 
