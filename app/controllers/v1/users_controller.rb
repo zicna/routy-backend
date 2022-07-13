@@ -9,6 +9,7 @@ class V1::UsersController < ApplicationController
 
     def show
         current_user
+        # puts current_user
         render :show, locals:{token: 'jwt'}, status: :created
     end
 
