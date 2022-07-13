@@ -22,11 +22,9 @@ class V1::UsersController < ApplicationController
         else
             render json: { error: 'invalid_credentials' }, status: :unauthorized
         end
-        # render :create, locals: {token: jwt}, status: :created
     end
 
     def destroy
-        # byebug
         @user = current_user
 
         if @user.destroy
@@ -34,7 +32,7 @@ class V1::UsersController < ApplicationController
         else
             head(:unprocessable_entity)
         end
-        # * head is rails way of jusr returning content in the header 
+        # * head is rails way of just returning content in the header 
         # * there is no content in the body of response
     end
 

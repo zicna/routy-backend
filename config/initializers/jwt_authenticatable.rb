@@ -5,7 +5,6 @@ module Devise
                 token = get_token
                 return fail(:invalid) unless token
 
-                # payload = get_payload 
                 payload = WebToken.decode(token)
                 return fail(:invalid) if payload == :expired
 
@@ -17,16 +16,6 @@ module Devise
 
             private 
 
-            # def get_payload
-            #     JWT.decode(
-            #         get_token, 
-            #         Rails.application.secrets.secret_key_base, 
-            #         'HS256'
-            #         ).first
-            # rescue JWT::ExpiredSignature
-            #     :expired
-            # end
-            
             def get_token
                 auth_header.present? && auth_header.split(" ").last
             end
