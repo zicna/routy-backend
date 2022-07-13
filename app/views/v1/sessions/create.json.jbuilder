@@ -7,5 +7,5 @@ json.data do
             :username,
         )
     end
-    json.jwt jwt
+    json.token token
 end
