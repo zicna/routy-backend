@@ -13,5 +13,10 @@ class V1::SessionsController < ApplicationController
     end
 
     def destroy
+        if current_user
+            render json: {message: 'successful sign out'}, status: :ok
+        else
+            render json: { error: 'invalid_credentials' }, status: :unauthorized
+        end
     end
 end 
