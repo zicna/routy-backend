@@ -8,8 +8,9 @@ class V1::UsersController < ApplicationController
     end 
 
     def show
-        current_user
-        render :show, locals:{token: 'jwt'}, status: :created
+        @user = current_user
+        jwt = WebToken.encode(@user)
+        render :show, locals:{token: jwt}, status: :ok
     end
 
     def create 
