@@ -5,7 +5,7 @@ module Devise
                 token = get_token
                 return fail(:invalid) unless token
 
-                paylaod = get_payload 
+                payload = get_payload 
                 return fail(:invalid) if payload == :expired
 
                 resource = mapping.to.find(payload['user_id'])
