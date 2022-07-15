@@ -3,7 +3,7 @@ class V1::RoutesController < ApplicationController
         @user = current_user
 
         if @user
-            @route = Route.create(user_id: @user.id, name: routes_params[:routeName])
+            @route = Route.create(user_id: @user.id, name: routes_params[:route_name])
 
             render :create, status: :created
         else
@@ -14,6 +14,6 @@ class V1::RoutesController < ApplicationController
 
     private
     def routes_params
-        params.require(:user).permit(:routeName)
+        params.require(:user).permit(:route_name)
     end
 end
