@@ -1,14 +1,8 @@
+
 json.data do
     json.user do
-        json.call(
-            @user,
-            :id,
-            :email
-            
-        )
-        json.call(
-            @route,
-            :name
-        )
+        json.id @user.id
+        json.email @user.email
+        json.route_name @route.name
     end 
 end
