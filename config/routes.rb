@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   namespace :v1, path: "", defaults: {format: :json} do
     resources :users, only: [ :show, :destroy]
+    resources :routes, only: [ :create]
+
   end
 end
 
