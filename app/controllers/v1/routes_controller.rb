@@ -12,8 +12,16 @@ class V1::RoutesController < ApplicationController
 
     end
 
+    def destroy
+        @route = Route.find_by(id: routes_params[:route_id])
+
+        @route.destroy
+
+        render :delete, status: :ok
+    end
+
     private
     def routes_params
-        params.require(:user).permit(:route_name)
+        params.require(:user).permit(:route_name, :route_id)
     end
 end
