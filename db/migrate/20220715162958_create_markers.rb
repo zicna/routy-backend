@@ -1,4 +1,4 @@
-class CreatePins < ActiveRecord::Migration[7.0]
+class CreateMarkers < ActiveRecord::Migration[7.0]
   def change
     create_table :markers do |t|
       t.references :user, null: false, foreign_key: true
