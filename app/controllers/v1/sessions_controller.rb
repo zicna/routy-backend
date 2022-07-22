@@ -7,7 +7,7 @@ class V1::SessionsController < ApplicationController
             jwt = WebToken.encode(@user)
             render :create, locals: {token: jwt}, status: :created
         else
-            render json: { error: 'invalid_credentials' }, status: :unauthorized
+            render json: { error: 'invalid credentials' }, status: :unauthorized
         end
            
     end
@@ -16,7 +16,7 @@ class V1::SessionsController < ApplicationController
         if current_user
             render json: {message: 'successful sign out'}, status: :ok
         else
-            render json: { error: 'invalid_credentials' }, status: :unauthorized
+            render json: { error: 'invalid credentials' }, status: :unauthorized
         end
     end
 

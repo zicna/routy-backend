@@ -14,14 +14,20 @@ class V1::UsersController < ApplicationController
     end
 
     def create 
-        @user = User.new(user_params)
+        user = User.where(email: user_params[:email]).first_or_initialize
+        if user.new_record?
+            @user = User.new(user_params)
+            if @user.save
+                jwt = WebToken.encode(@user)
+                render :create, locals: {token: jwt}, status: :created
+            else
+                render json: { error: 'invalid credentials' }, status: :unauthorized
+            end
 
-        if @user.save
-            jwt = WebToken.encode(@user)
-            render :create, locals: {token: jwt}, status: :created
         else
-            render json: { error: 'invalid_credentials' }, status: :unauthorized
+            render json: { error: 'email already taken, please login' }, status: :unauthorized
         end
+
     end
 
     def destroy
