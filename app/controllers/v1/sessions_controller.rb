@@ -1,4 +1,5 @@
 class V1::SessionsController < ApplicationController
+    before_action :authenticate_user!, :except => [:create] 
     def create
         @user = User.where(email: user_params[:email]).first
         
@@ -13,8 +14,10 @@ class V1::SessionsController < ApplicationController
     end
 
     def destroy
-        if current_user
-            render json: {message: 'successful sign out'}, status: :ok
+        user = current_user
+        if user_signed_in?
+            sign_out user
+            render json: {message: 'successful log out'}, status: :ok
         else
             render json: { error: 'invalid credentials' }, status: :unauthorized
         end
