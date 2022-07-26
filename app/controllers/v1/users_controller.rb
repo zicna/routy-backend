@@ -21,11 +21,11 @@ class V1::UsersController < ApplicationController
                 jwt = WebToken.encode(@user)
                 render :create, locals: {token: jwt}, status: :created
             else
-                render json: { error: 'invalid credentials' }, status: :unauthorized
+                render json: { message: 'invalid credentials' }, status: :unauthorized
             end
 
         else
-            render json: { error: 'email already taken, please login' }, status: :unauthorized
+            render json: { message: 'email already taken, please login' }, status: :unauthorized
         end
 
     end
