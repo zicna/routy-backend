@@ -7,4 +7,5 @@ json.data do
         )
     end
     json.token token
+    json.message "successfully signed in"
 end

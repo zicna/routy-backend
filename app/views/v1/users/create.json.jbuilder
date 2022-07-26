@@ -8,4 +8,5 @@ json.data do
         )
     end
     json.token token
+    json.message "new account created"
 end 
