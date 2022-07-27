@@ -4,6 +4,7 @@ json.data do
         json.id @user.id
         json.email @user.email
         json.marker do
+            json.id @marker.id
             json.name @marker.name
             json.description @marker.description
             json.category @marker.category
