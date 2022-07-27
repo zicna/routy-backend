@@ -3,10 +3,10 @@ json.data do
         json.call(
             @user,
             :id,
-            :email,
-            :username
+            :email
         )
     end
+    json.userMarkers @user.markers
     json.token token
     json.message "new account created"
 end 
