@@ -1,10 +1,12 @@
 class V1::MarkersController < ApplicationController
     def create
+        # byebug
         @user = current_user
-
-        if @user
-            @marker = Marker.create(user_id: @user.id, name: markers_params[:marker_name])
-
+        
+        @marker = Marker.new(markers_params)
+        @marker.user_id = @user.id
+        
+        if @marker.save
             render :create, status: :created
         else
             render json: { error: 'invalid_credentials' }, status: :unauthorized
@@ -22,6 +24,6 @@ class V1::MarkersController < ApplicationController
 
     private
     def markers_params
-        params.require(:user).permit(:marker_id, :user_id, :marker_name, :category, :description, :color, :latitude, :longitude)
+        params.require(:marker).permit(:name, :category, :description, :color, :latitude, :longitude)
     end
 end
