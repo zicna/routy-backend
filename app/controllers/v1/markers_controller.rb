@@ -15,7 +15,7 @@ class V1::MarkersController < ApplicationController
     end
 
     def destroy
-        @marker = Marker.find_by(id: markers_params[:marker_id])
+        @marker = Marker.find_by(id: params[:id])
 
         @marker.destroy
 
