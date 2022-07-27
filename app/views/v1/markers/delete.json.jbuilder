@@ -1,5 +1,6 @@
 json.data do
-    json.user do
-        json.route_id @route.id
+    json.marker do
+        json.id @marker.id
     end 
+    json.message "#{@marker.name} has been deleted"
 end
