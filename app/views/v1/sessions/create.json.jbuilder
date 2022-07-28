@@ -6,7 +6,7 @@ json.data do
             :email
         )
     end
-    json.userMarkers @user.markers
+    json.userMarkers @markers
     json.token token
     json.message "successfully signed in"
 end

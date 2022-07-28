@@ -6,6 +6,7 @@ class V1::SessionsController < ApplicationController
         #! user&. same as user && user.valid_password?
         if @user&.valid_password?(user_params[:password])
             jwt = WebToken.encode(@user)
+            @markers = Marker.by_recently_created
             render :create, locals: {token: jwt}, status: :created
         else
             render json: { message: 'invalid credentials' }, status: :unauthorized
