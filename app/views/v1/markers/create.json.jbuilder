@@ -13,4 +13,5 @@ json.data do
             json.longitude @marker.longitude
         end
     end 
+    json.message "new marker has been created"
 end
