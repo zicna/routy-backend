@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_162958) do
     t.string "name"
     t.string "category"
     t.text "description"
-    t.string "color"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", null: false

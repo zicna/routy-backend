@@ -5,7 +5,6 @@ class CreateMarkers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :category
       t.text :description
-      t.string :color
       t.float :latitude
       t.float :longitude
 

@@ -8,7 +8,6 @@ json.data do
             json.name @marker.name
             json.description @marker.description
             json.category @marker.category
-            json.color @marker.color
             json.latitude @marker.latitude
             json.longitude @marker.longitude
         end
