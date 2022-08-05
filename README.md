@@ -18,12 +18,7 @@
 - [Challanges](#challanges)
 - [Future upgrades](#future-upgrades)
 - [Bugs](#bugs)
-- [Credits](#credits)
 - [License](#license)
-- [branching](#branching)
-  - [main](#main)
-  - [integrating_devise](#integrating_devise)
-- [Testing with Paw](#testing-with-paw)
 
 ---
 
@@ -71,7 +66,7 @@ ___
 
 ## Installation
 
-1.  Backend [(github link)](https://github.com/zicna/quiz_backend.git 'backend repo')
+1.  Backend [(github link)](https://github.com/zicna/routy-backend 'backend repo')
 
 - fork this repo
 - clone it to your local environment
@@ -81,47 +76,43 @@ ___
 bundle install
 rails db:create
 rails db:migrate
-rails db:seed
 rails server
 ```
 
-<spam style="color:yellow">NOTE: We can check API we are getting from server by navigating to `http://localhost:3000/users` </spam>
+<spam style="color:yellow">NOTE: We can check if server is up and running by navigating to `http://localhost:3000/users` </spam>
 
 ---
 
 ## How to use this app
 
-- After all steps from **Installation** are done usrs can navigate to `http://localhost:3000/users` to see API provided by server
-- The rest of application is on frontend part which we can check [here](https://github.com/zicna/quiz_frontend).
-
-<spam style="color:yellow">*NOTE: Here is a good place to point out that as we know *seed.rb\* file is used for dummy date during our development and test phases but we will require you to run `rails seed` command and it will give you some data you do not really need (such as 3,4 users with their results) but it will also give you some essential ones for this app to work: quiz, questions, and options for those questions. </spam>
+- After **Installation** and verifying that our server is working rest of application usage is done through frontend part of application
+- The frontend part we can check [here](https://github.com/zicna/routy-frontend).
 
 ---
 
 ## Challanges
 
-- database setup, so users can have multiple takes
-- API structure, methods and scopes, all data manipulations would be done in the backend
-- sending data of selected anwers back to the server side.
+- Authentication and Authorization using device due too devise gem working on top of warner gem
+- Learning to use Paw for API testing (after initial phase this helped me a lot when building backend of my application)
+
 
 ---
 
 ## Future upgrades
 
-- [x] Fix readme.md file
-- [ ] Adding user validation
+- [ ] Better error handeling (case server is not working or something else goes wrong with AJAX requests)
+- [ ] Adding user email confirmation
+- [ ] Better styling
+- [ ] Possibly develop this application using React and Redux (which would make a lot more sense)
 
 ---
 
 ## Bugs
 
-1. Once `new take` is created if we hit refresh take will stay with nothing selected therefore it will appear as the user had `take` with no correct answers
+1. Certain problem can occur while leaflet map is loading since it is happening asynchronously  
 
----
+For any questions or bugs reports please conntact me [here](http://www.milan-zivkovic.com). Thank you!
 
-## Credits
-
-Great help for this app to see light of the day goes to [Candice Peaters](https://github.com/candicelizabeth). Thank you!
 
 ---
 
@@ -129,14 +120,3 @@ Great help for this app to see light of the day goes to [Candice Peaters](https:
 
 This application is avaiable as open source under the terms of the [MIT License](LICENSE).
 
-
-## branching
- ### main 
- - is using JWT for creating token and all authentication 
-
- ### integrating_devise
- - is integrating devise gem for rails app authentiacation
- - this branch was merged into main and deleted
-
-## Testing with Paw
-- checkout `Rails-api-devise-jwt.paw` for testing api with Paw
