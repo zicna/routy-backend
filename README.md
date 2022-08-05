@@ -118,5 +118,5 @@ For any questions or bugs reports please conntact me [here](http://www.milan-ziv
 
 ## License
 
-This application is avaiable as open source under the terms of the [MIT License](LICENSE).
+This application is avaiable as open source under the terms of the [MIT License](licence).
 
